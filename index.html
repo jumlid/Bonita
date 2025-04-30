@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <h1>Bonita</h1>
+            <button id="menu" onclick="protection()"></button>
+            <div class="menu">
+                <div class="versatile">
+                    <h3>versatile</h3>
+                    <button>Maid</button>
+                    <button>waifu</button>
+                    <button>marin-kitagawa</button>
+                    <button>mori-calliope</button>
+                    <button>raiden-shogun</button>
+                    <button>oppai</button>
+                    <button>selfies</button>
+                    <button>uniform</button>
+                    <button>kamisato-ayaka</button>
+
+
+                </div>
+
+
+
+            </div>
+        </nav>
+        <div class="content">
+            <div class="pic">
+                <img src="https://cdn.waifu.im/6869.png" alt="">
+                <div class="additional_info">
+                    <button>Like</button><button>Comment</button><button>Artish</button>
+                </div>
+            </div>
+            <div class="pic">
+                <img src="https://cdn.waifu.im/3667.png" alt="">
+                <div class="additional_info"> <button>Like</button><button>Comment</button><button>Artish</button></div>
+            </div>
+            <div class="pic">
+                <img src="https://cdn.waifu.im/6869.png" alt="">
+                <div class="additional_info"> <button>Like</button><button>Comment</button><button>Artish</button></div>
+            </div>
+            <div class="pic">
+                <img src="https://cdn.waifu.im/3667.png" alt="">
+                <div class="additional_info"> <button>Like</button><button>Comment</button><button>Artish</button></div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body {
+            background-color: rgba(0, 0, 0, 0.938);
+        }
+
+        nav {
+            width: 100vw;
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.603);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            height: 50px;
+            z-index: 5;
+        }
+
+        .menu {
+            position: fixed;
+            right: 0%;
+            width: 300px;
+            top: 50px;
+            z-index: 5;
+            background-color: rgba(0, 0, 0, 0.63);
+            backdrop-filter: blur(50px);
+
+            display: flex;
+            justify-content: center;
+
+            align-items: center;
+            height: 100vh;
+
+            /*     animation: cum forwards 2s ease-in-out;*/
+        }
+
+        #menu {
+            border: none;
+            background-color: transparent;
+            background-image: url(src/main.png);
+            background-position: center;
+            background-size: 45px;
+            background-repeat: no-repeat;
+            width: 60px;
+            height: 100%;
+            margin-left: auto;
+            margin-right: 20px;
+            cursor: pointer;
+
+        }
+
+        .versatile {
+
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .versatile button {
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            font-weight: bold;
+            color: rgb(255, 0, 119);
+            font-size: 15px;
+        }
+
+        .versatile button:hover {
+            text-decoration: underline;
+            color: rgb(223, 11, 110);
+        }
+
+        /* I know thats some sus looking animation id ._.*/
+        @keyframes cum {
+            from {
+                right: -40%;
+            }
+
+            to {
+                right: 0%;
+            }
+
+        }
+
+        @keyframes climax {
+            from {
+                right: 0%;
+            }
+
+            to {
+                right: -40%;
+
+            }
+
+        }
+
+
+
+        h1 {
+            margin-left: 30px;
+            font-size: 30px;
+        }
+
+        .container {
+            color: white;
+            height: fit-content;
+
+        }
+
+        .content {
+            position: relative;
+            top: 50px;
+
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .additional_info {
+            border: 1px solid red;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+
+            object-fit: cover;
+            width: 800px;
+            height: fit-content;
+        }
+
+        @media (width<=809px) {
+            img {
+                width: 521px;
+            }
+        }
+
+        @media (width <521px) {
+            img {
+                width: 320px;
+                height: fit-content;
+            }
+
+        }
+    </style>
+    <script>
+        let over = true
+        function protection() {
+
+            if (over) {
+                document.getElementsByClassName('menu')[0].style.animation = 'cum 1s ease-in-out forwards';
+                over = false
+            }
+            else {
+                document.getElementsByClassName('menu')[0].style.animation = 'climax 1s ease-in-out forwards';
+                over = true
+            }
+
+
+
+        }
+        /*
+        let api_key = '8G3QGdfWSK2jYy3DQEYM_4oxA5sOwSZIZvb0cs5wYt7rlTu62N6l7bpCYr2--tIGIEMe73kOgBqBPXmE_m9SBDpg0RNNfj7O8c_NgbxYmSWqpm5ZTIJkgUjDaI3UdlfqUwP47ynaTbtLoU7Z9UnukcAMQ0hS_mWNLrDVLbUQSOM'
+        let url = `https://api.waifu.im/tags`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })*/
+    </script>
+</body>
+
+</html>
