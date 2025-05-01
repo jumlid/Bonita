@@ -4,48 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bonita</title>
+    <link rel="shortcut icon" href="src/icon.png" type="image/x-icon">
 </head>
 
 <body>
     <div class="container">
+
         <nav>
             <h1>Bonita</h1>
             <button id="menu" onclick="protection()"></button>
-            <div class="menu">
-                <div class="versatile">
-                    <h3>versatile</h3>
-                    <button data-tag="maid">Maid</button>
-                    <button data-tag="waifu">waifu</button>
-                    <button data-tag="marin-kitagawa">marin-kitagawa</button>
-                    <button data-tag="mori-calliope">mori-calliope</button>
-                    <button data-tag="raiden-shogun">raiden-shogun</button>
-                    <button data-tag="oppai">oppai</button>
-                    <button data-tag="selfies">selfies</button>
-                    <button data-tag="uniform">uniform</button>
-                    <button data-tag="kamisato-ayaka">kamisato-ayaka</button>
+
+        </nav>
+        <div class="menu">
+            <div class="versatile">
+                <h3>versatile</h3>
+                <button data-tag="maid">Maid</button>
+                <button data-tag="waifu">waifu</button>
+                <button data-tag="marin-kitagawa">marin-kitagawa</button>
+                <button data-tag="mori-calliope">mori-calliope</button>
+                <button data-tag="raiden-shogun">raiden-shogun</button>
+                <button data-tag="oppai">oppai</button>
+                <button data-tag="selfies">selfies</button>
+                <button data-tag="uniform">uniform</button>
+                <button data-tag="kamisato-ayaka">kamisato-ayaka</button>
 
 
-                </div>
-                <div class="NSFW">
-                    <h3>NSFW</h3>
-                    <button data-tag="ass">ass</button>
-                    <button data-tag="hentai">hentai</button>
-                    <button data-tag="milf">milf</button>
-                    <button data-tag="oral">oral</button>
-                    <button data-tag="paizari">paizari</button>
-                    <button data-tag="eachi">eacchi</button>
-                    <button data-tag="ero">ero</button>
-
-
-
-                </div>
-
+            </div>
+            <div class="NSFW">
+                <h3>NSFW</h3>
+                <button data-tag="ass">ass</button>
+                <button data-tag="hentai">hentai</button>
+                <button data-tag="milf">milf</button>
+                <button data-tag="oral">oral</button>
+                <button data-tag="paizari">paizari</button>
+                <button data-tag="eachi">eacchi</button>
+                <button data-tag="ero">ero</button>
 
 
 
             </div>
-        </nav>
+
+
+
+
+        </div>
         <div class="content">
 
 
@@ -76,12 +79,12 @@
 
         .menu {
             position: fixed;
-            right: -100%;
+            right: -150%;
             width: 300px;
             top: 50px;
             z-index: 5;
             background-color: rgba(0, 0, 0, 0.63);
-            backdrop-filter: blur(50px);
+            backdrop-filter: blur(5px);
 
             display: flex;
             justify-content: center;
@@ -102,7 +105,7 @@
         #menu {
             border: none;
             background-color: transparent;
-            background-image: url(src/main.png);
+            background-image: url(src/menu.png);
             background-position: center;
             background-size: 45px;
             background-repeat: no-repeat;
@@ -142,7 +145,7 @@
         @keyframes cum {
             from {
                 display: flex;
-                right: -50%;
+                right: -100%;
 
             }
 
@@ -216,11 +219,38 @@
         }
 
         @media (width <521px) {
+            .menu {
+                top: 30px;
+                width: 200px;
+
+            }
+
+            #menu {
+                padding: 2px;
+                margin-right: 0;
+
+                background-size: contain;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            nav {
+                height: 30px;
+            }
+
             img {
-                width: 320px;
+                width: 350px;
                 height: fit-content;
             }
 
+        }
+
+        @media (width <320px) {
+            img {
+                width: 280px;
+            }
         }
     </style>
     <script>
@@ -232,37 +262,24 @@
             else {
                 document.getElementsByClassName('menu')[0].style.animation = 'cum 0.5s ease-in-out forwards';
             }
-            /*
-            console.log(document.getElementsByClassName('menu')[0].style.animation.split(' ')[7])
 
-
-            if (over) {
-                document.getElementsByClassName('menu')[0].style.animation = 'cum 1s ease-in-out forwards';
-                over = false
-            }
-            else {
-                document.getElementsByClassName('menu')[0].style.animation = 'climax 1s ease-in-out forwards';
-                over = true
-            }
-
-*/
 
         }
         document.addEventListener('click', (e) => {
 
             if (e.target.dataset.tags || e.target.className === 'menu' || e.target.id === 'menu') {
-                over = true
+
             }
             else {
-                over = false
-                document.getElementsByClassName('menu')[0].style.animation = 'climax 1s ease-in-out forwards';
+
+                document.getElementsByClassName('menu')[0].style.animation = 'climax 0.5s ease-in-out forwards';
             }
         })
         let main = document.getElementsByClassName('menu')[0]
         main.addEventListener('click', (e) => {
             //console.log(e)
             if (e.target.dataset.tag) {
-                console.log(e.target.dataset.tag)
+                //    console.log(e.target.dataset.tag)
                 display(e.target.dataset.tag)
             }
 
@@ -273,26 +290,37 @@
 
 
 
-
+// By default i have set the parameter as maid hehe why? coz i like maid cosplay ._.
         display("maid")
 
         async function display(para) {
+            let id = [] // This is a temp array to store all the ids of pic that are showed screen by this i can check if a img is alredy send
             let content = document.getElementsByClassName('content')[0]
-            content.innerHTML = ''
+            content.innerHTML = ' '
             for (let index = 0; index != 20; index++) {
-                console.log(index)
-                await fetch(`https://api.waifu.im/search?${para}`)
+                //   console.log(index)
+                await fetch(`https://api.waifu.im/search?included_tags=${para}`)
                     .then(res => res.json())
                     .then(data => {
-                        content.innerHTML += `
+
+                        //console.log(id)
+                        if (id.includes(data.images[0].image_id)) {
+                         //   console.log('fucked')
+                            index-- // if img id match i subtract 1 from the index  
+                        }
+                        else {
+                            //else display the image
+                            content.innerHTML += `
                         
-            <div class="pic">
-                <img src="${data.images[0].url}" alt="${data.images[0].tags[0].description}">
-                <div class="additional_info">  <button>Like</button><button>Comment</button><button>Artish</button></div>
-            </div>
-                        
-                        `
-                        console.log(data)
+                        <div class="pic">
+                            <img src="${data.images[0].url}" alt="${data.images[0].tags[0].description}">
+                            <div class="additional_info">  <button>Like</button><button>Comment</button><button>Artish</button></div> 
+                        </div>
+                                    
+                                    `// I was also thinking of adding a like comment stuff maybe in near future hehe
+                        }
+                        id.push(data.images[0].image_id)
+                        //    console.log(data)
                     })
                 // const element = array[index];
 
