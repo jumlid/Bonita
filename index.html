@@ -15,29 +15,28 @@
             <div class="menu">
                 <div class="versatile">
                     <h3>versatile</h3>
-                    <button>Maid</button>
-                    <button>waifu</button>
-                    <button>marin-kitagawa</button>
-                    <button>mori-calliope</button>
-                    <button>raiden-shogun</button>
-                    <button>oppai</button>
-                    <button>selfies</button>
-                    <button>uniform</button>
-                    <button>kamisato-ayaka</button>
+                    <button data-tag="maid">Maid</button>
+                    <button data-tag="waifu">waifu</button>
+                    <button data-tag="marin-kitagawa">marin-kitagawa</button>
+                    <button data-tag="mori-calliope">mori-calliope</button>
+                    <button data-tag="raiden-shogun">raiden-shogun</button>
+                    <button data-tag="oppai">oppai</button>
+                    <button data-tag="selfies">selfies</button>
+                    <button data-tag="uniform">uniform</button>
+                    <button data-tag="kamisato-ayaka">kamisato-ayaka</button>
 
 
                 </div>
                 <div class="NSFW">
                     <h3>NSFW</h3>
-                    <button>Maid</button>
-                    <button>waifu</button>
-                    <button>marin-kitagawa</button>
-                    <button>mori-calliope</button>
-                    <button>raiden-shogun</button>
-                    <button>oppai</button>
-                    <button>selfies</button>
-                    <button>uniform</button>
-                    <button>kamisato-ayaka</button>
+                    <button data-tag="ass">ass</button>
+                    <button data-tag="hentai">hentai</button>
+                    <button data-tag="milf">milf</button>
+                    <button data-tag="oral">oral</button>
+                    <button data-tag="paizari">paizari</button>
+                    <button data-tag="eachi">eacchi</button>
+                    <button data-tag="ero">ero</button>
+
 
 
                 </div>
@@ -48,24 +47,7 @@
             </div>
         </nav>
         <div class="content">
-            <div class="pic">
-                <img src="https://cdn.waifu.im/6869.png" alt="">
-                <div class="additional_info">
-                    <button>Like</button><button>Comment</button><button>Artish</button>
-                </div>
-            </div>
-            <div class="pic">
-                <img src="https://cdn.waifu.im/3667.png" alt="">
-                <div class="additional_info"> <button>Like</button><button>Comment</button><button>Artish</button></div>
-            </div>
-            <div class="pic">
-                <img src="https://cdn.waifu.im/6869.png" alt="">
-                <div class="additional_info"> <button>Like</button><button>Comment</button><button>Artish</button></div>
-            </div>
-            <div class="pic">
-                <img src="https://cdn.waifu.im/3667.png" alt="">
-                <div class="additional_info"> <button>Like</button><button>Comment</button><button>Artish</button></div>
-            </div>
+
 
         </div>
 
@@ -94,7 +76,7 @@
 
         .menu {
             position: fixed;
-            right: 0%;
+            right: -100%;
             width: 300px;
             top: 50px;
             z-index: 5;
@@ -159,7 +141,9 @@
         /* I know thats some sus looking animation id ._.*/
         @keyframes cum {
             from {
-                right: -40%;
+                display: flex;
+                right: -50%;
+
             }
 
             to {
@@ -170,11 +154,12 @@
 
         @keyframes climax {
             from {
+                display: flex;
                 right: 0%;
             }
 
             to {
-                right: -40%;
+                right: -100%;
 
             }
 
@@ -205,11 +190,16 @@
         }
 
         .additional_info {
-            border: 1px solid red;
+
             height: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .additional_info button {
+            display: none;
+
         }
 
         img {
@@ -234,8 +224,17 @@
         }
     </style>
     <script>
-        let over = true
+        let over;
         function protection() {
+            if (document.getElementsByClassName('menu')[0].style.animation.split(' ')[7] === "cum") {
+                document.getElementsByClassName('menu')[0].style.animation = 'climax 0.5s ease-in-out forwards';
+            }
+            else {
+                document.getElementsByClassName('menu')[0].style.animation = 'cum 0.5s ease-in-out forwards';
+            }
+            /*
+            console.log(document.getElementsByClassName('menu')[0].style.animation.split(' ')[7])
+
 
             if (over) {
                 document.getElementsByClassName('menu')[0].style.animation = 'cum 1s ease-in-out forwards';
@@ -246,17 +245,66 @@
                 over = true
             }
 
-
+*/
 
         }
-        /*
-       
-        let url = `https://api.waifu.im/tags`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })*/
+        document.addEventListener('click', (e) => {
+
+            if (e.target.dataset.tags || e.target.className === 'menu' || e.target.id === 'menu') {
+                over = true
+            }
+            else {
+                over = false
+                document.getElementsByClassName('menu')[0].style.animation = 'climax 1s ease-in-out forwards';
+            }
+        })
+        let main = document.getElementsByClassName('menu')[0]
+        main.addEventListener('click', (e) => {
+            //console.log(e)
+            if (e.target.dataset.tag) {
+                console.log(e.target.dataset.tag)
+                display(e.target.dataset.tag)
+            }
+
+
+        })
+
+
+
+
+
+
+        display("maid")
+
+        async function display(para) {
+            let content = document.getElementsByClassName('content')[0]
+            content.innerHTML = ''
+            for (let index = 0; index != 20; index++) {
+                console.log(index)
+                await fetch(`https://api.waifu.im/search?${para}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        content.innerHTML += `
+                        
+            <div class="pic">
+                <img src="${data.images[0].url}" alt="${data.images[0].tags[0].description}">
+                <div class="additional_info">  <button>Like</button><button>Comment</button><button>Artish</button></div>
+            </div>
+                        
+                        `
+                        console.log(data)
+                    })
+                // const element = array[index];
+
+            }
+        }
+
+
+
+
+
+
+
     </script>
 </body>
 
